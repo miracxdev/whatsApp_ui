@@ -12,14 +12,35 @@ class HomeScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Color(0xff008166),
         title: const Text('WhatsApp'),
-        actions: const [
+        actions: [
           Padding(
             padding: EdgeInsets.only(right: 15),
             child: Icon(Icons.search),
           ),
           Padding(
             padding: EdgeInsets.only(right: 10),
-            child: Icon(Icons.more_vert),
+            child: Row(
+              children: [
+                DropdownButton<String>(
+                  isDense: false,
+                  iconEnabledColor: Colors.white,
+                  icon: Icon(Icons.more_vert),
+                  items: <String>[
+                    'A',
+                    'B',
+                    'C',
+                    'D',
+                    'E'
+                  ].map((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                  onChanged: (_) {},
+                ),
+              ],
+            ),
           )
         ],
       ),
@@ -47,7 +68,11 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Color(0xff00a881),
         child: Icon(Icons.message),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(),));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ChatScreen(),
+              ));
         },
       ),
     );
